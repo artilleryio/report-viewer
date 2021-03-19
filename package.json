@@ -1,0 +1,31 @@
+{
+  "name": "artillery-charting",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.jsx",
+  "dependencies": {
+    "@reactchartjs/react-chart.js": "1.0.0-rc.3",
+    "chart.js": "2.9.4",
+    "react": "17.0.1",
+    "react-chartjs-2": "2.11.1",
+    "react-dom": "17.0.1",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "4.0.1"
+  },
+  "devDependencies": {
+    "typescript": "3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
