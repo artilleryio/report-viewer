@@ -11,7 +11,7 @@ import GraphReqLoad from "../components/graph_reqload";
 import GraphCodes from "../components/graph_codes";
 import GraphTotalCodes from "../components/graph_totalcodes";
 
-// import _testData from "../data/test_report.json";
+// import _testData from "../../samples/test_report.json";
 // const testState = {
 //   name: "Test File",
 //   results: _testData
