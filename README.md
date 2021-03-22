@@ -12,6 +12,6 @@ Simply `npm install` and `npm start` .. Once open click the upload button and lo
 
 ## Screenshots
 
-![Screenshot01](/samples/ss01.png)
-![Screenshot02](/samples/ss02.png)
-![Screenshot03](/samples/ss03.png)
+![Screenshot01](/samples/_ss01.png)
+![Screenshot02](/samples/_ss02.png)
+![Screenshot03](/samples/_ss03.png)
