@@ -11,9 +11,7 @@ import "./assets/styles/bootstrap.overrides.css";
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      theme: "Dark"
-    };
+    this.state = {};
   }
 
   render() {
