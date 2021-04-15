@@ -11,12 +11,6 @@ import GraphReqLoad from "../components/graph_reqload";
 import GraphCodes from "../components/graph_codes";
 import GraphTotalCodes from "../components/graph_totalcodes";
 
-// import _testData from "../../samples/test_report.json";
-// const testState = {
-//   name: "Test File",
-//   results: _testData
-// };
-
 const defaultState = {
   name: "No file loaded",
   version: null,
@@ -31,6 +25,12 @@ const defaultState = {
     intermediate: []
   }
 };
+
+if (window.report) {
+  defaultState.name = "Generated Report";
+  defaultState.version = window.report_version;
+  defaultState.results = window.report;
+}
 
 export default () => {
   const [payload, setPayload] = useState(defaultState);

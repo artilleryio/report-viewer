@@ -61,7 +61,7 @@ export default ({ setPayload }) => {
     });
   };
 
-  return (
+  return window.report ? null : (
     <Fragment>
       <ol className="breadcrumb">
         <li className="breadcrumb-item active">
