@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ name, data }) => {
+export default ({ name, version, data }) => {
   const formatDateTime = (date) => {
     if (date && date !== "") {
       return new Date(date).toLocaleString();
@@ -16,6 +16,10 @@ export default ({ name, data }) => {
         <li className="list-group-item d-flex justify-content-between align-items-center">
           Filename
           <span className="badge">{name}</span>
+        </li>
+        <li className="list-group-item d-flex justify-content-between align-items-center">
+          Version
+          <span className="badge">{version}</span>
         </li>
         <li className="list-group-item d-flex justify-content-between align-items-center">
           Timestamp

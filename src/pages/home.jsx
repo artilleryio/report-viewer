@@ -19,6 +19,7 @@ import GraphTotalCodes from "../components/graph_totalcodes";
 
 const defaultState = {
   name: "No file loaded",
+  version: null,
   results: {
     aggregate: {
       latency: {},
@@ -37,7 +38,7 @@ export default () => {
   return (
     <Fragment>
       <PayloadLoader setPayload={setPayload} />
-      <Information name={payload.name} data={payload.results} />
+      <Information name={payload.name} data={payload.results} version={payload.version} />
       <div className="row">
         <div className="col-md-6 col-lg-6 col-sm-12 col-xs-12">
           <Scenarios data={payload.results} />
