@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 1.0.4
+- Adding support for generated reports by loading report from window object.
+
 ## Version 1.0.3
 - Added formatting to numbers for readability (Easier to read larger numbers)
 - Added spacing to badges for readability (Periods hard to make out)
