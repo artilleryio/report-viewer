@@ -1,4 +1,5 @@
 import React, { useRef, useState, Fragment } from "react";
+import mapper from "../utilities/mapper";
 
 export default ({ setPayload }) => {
   const inputEl = useRef(null);
@@ -24,8 +25,14 @@ export default ({ setPayload }) => {
     newfile.text().then((x) => {
       try {
         var jsonData = JSON.parse(x);
+        var version = 1;
+        if (jsonData.aggregate.histograms) {
+          version = 2;
+          jsonData = mapper.mapToLegacyObject(jsonData);
+        } 
         setPayload({
           name: newfile.name,
+          version: version,
           results: jsonData
         });
       } catch (err) {
