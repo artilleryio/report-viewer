@@ -5,7 +5,9 @@ export default ({ data }) => {
   const colors = {
     min: "rgba(54, 235, 84, 0.5)",
     max: "rgba(54, 162, 235, 0.5)",
-    median: "rgba(235, 54, 126, 0.5)"
+    median: "rgba(235, 54, 126, 0.5)",
+    p95s: "rgba(184, 54, 235, 0.5)",
+    p99s: "rgba(235, 193, 54, 0.5)"
   };
 
   const mapChartData = () => {
@@ -14,12 +16,16 @@ export default ({ data }) => {
     const min = [];
     const max = [];
     const median = [];
+    const p95s = [];
+    const p99s = [];
     data.forEach((item) => {
       let d = new Date(item.timestamp);
       labels.push(d.toLocaleString());
       min.push(item.latency.min);
       max.push(item.latency.max);
       median.push(item.latency.median);
+      p95s.push(item.latency.p95);
+      p99s.push(item.latency.p99);
     });
     datasets.push({
       label: "Min Response Time",
@@ -40,6 +46,20 @@ export default ({ data }) => {
       data: median,
       fill: false,
       borderColor: colors.median,
+      yAxisID: "y-axis-0"
+    });
+    datasets.push({
+      label: "95th Percentile",
+      data: median,
+      fill: false,
+      borderColor: colors.p95s,
+      yAxisID: "y-axis-0"
+    });
+    datasets.push({
+      label: "99th Percentile",
+      data: median,
+      fill: false,
+      borderColor: colors.p99s,
       yAxisID: "y-axis-0"
     });
     return {

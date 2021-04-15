@@ -60,3 +60,7 @@ body {
 .display-none {
   display: none;
 }
+
+.badge {
+  letter-spacing: 0.5px;
+}
