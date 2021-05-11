@@ -49,7 +49,7 @@ export default ({ data }) => {
           )}
         </li>
         <li className="list-group-item d-flex justify-content-between align-items-center">
-          Average response time
+          Median response time
           {data.aggregate.latency.median && (
             <span className="badge badge-primary badge-pill">
               {formatNumber(data.aggregate.latency.median)} ms

@@ -11,11 +11,9 @@ import GraphReqLoad from "../components/graph_reqload";
 import GraphCodes from "../components/graph_codes";
 import GraphTotalCodes from "../components/graph_totalcodes";
 
-// import _testData from "../../samples/test_report.json";
-// const testState = {
-//   name: "Test File",
-//   results: _testData
-// };
+import AddonSelector from "../components/addonSelector";
+import RawCustomStats from "../components/addons/rawCustomStats";
+import MetricsByEndpoint from "../components/addons/metricsByEndpoint";
 
 const defaultState = {
   name: "No file loaded",
@@ -34,7 +32,7 @@ const defaultState = {
 
 export default () => {
   const [payload, setPayload] = useState(defaultState);
-
+  const [addon, setAddon] = useState('raw');
   return (
     <Fragment>
       <PayloadLoader setPayload={setPayload} />
@@ -64,6 +62,16 @@ export default () => {
       <span className="print-pb">&nbsp;</span>
       <GraphCodes data={payload.results.intermediate} />
       <GraphTotalCodes data={payload.results} />
+
+      { payload.results.aggregate.customStats && 
+          <Fragment>
+            <span className="print-pb mb-4">&nbsp;</span>
+            <AddonSelector addon={addon} setAddonCallback={setAddon} />
+            <br />
+            { addon === 'raw' && <RawCustomStats data={payload.results} /> }
+            { addon === 'metrics-by-endpoint' && <MetricsByEndpoint data={payload.results} /> }
+          </Fragment>
+      }
     </Fragment>
   );
 };
