@@ -3,7 +3,9 @@ import { formatNumber } from "../../utilities/formatters";
 
 export default ({ data }) => {
   const validateHandler = () => {
-    return false;
+    return (data.aggregate.customStats && data.aggregate.counters) 
+      && (JSON.stringify(data.aggregate.customStats) !== JSON.stringify({})) 
+      && (JSON.stringify(data.aggregate.counters) !== JSON.stringify({})) 
   };
   const pivotCodesByEndpoint = () => {
     let collection = [];
@@ -27,7 +29,7 @@ export default ({ data }) => {
     });
     return collection;
   };
-  return validateHandler() ? 
+  return !validateHandler() ? 
     <div className="alert alert-danger">
       Unable to parse custom metrics for this addon handler.
     </div> : (
@@ -84,11 +86,6 @@ export default ({ data }) => {
                     </li>
                   );
                 })}
-                {JSON.stringify(item.codes) === JSON.stringify({}) ? (
-                  <div className="list-group">
-                    <div className="list-group-item text-muted">No Results</div>
-                  </div>
-                ) : null}
               </ul>
             </div>
           </div>

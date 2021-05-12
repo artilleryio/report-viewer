@@ -2,8 +2,15 @@ import React from "react";
 import { formatNumber } from "../../utilities/formatters";
 
 export default ({ data }) => {
-  return (
-
+  const validateHandler = () => {
+    return (data.aggregate.customStats && data.aggregate.counters) 
+      && (JSON.stringify(data.aggregate.customStats) !== JSON.stringify({})) 
+      && (JSON.stringify(data.aggregate.counters) !== JSON.stringify({})) 
+  };
+  return !validateHandler() ? 
+    <div className="alert alert-danger">
+      Unable to parse custom metrics for this addon handler.
+    </div> : (
     <div className="row">
         <div className="col-md-6 col-lg-6 col-sm-12 col-xs-12">
             <h5>

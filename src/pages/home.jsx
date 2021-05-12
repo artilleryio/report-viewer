@@ -33,6 +33,11 @@ const defaultState = {
 export default () => {
   const [payload, setPayload] = useState(defaultState);
   const [addon, setAddon] = useState('raw');
+  const validateHandler = () => {
+    return (payload.results.aggregate.customStats && payload.results.aggregate.counters) 
+      && (JSON.stringify(payload.results.aggregate.customStats) !== JSON.stringify({})) 
+      && (JSON.stringify(payload.results.aggregate.counters) !== JSON.stringify({})) 
+  };
   return (
     <Fragment>
       <PayloadLoader setPayload={setPayload} />
@@ -63,7 +68,7 @@ export default () => {
       <GraphCodes data={payload.results.intermediate} />
       <GraphTotalCodes data={payload.results} />
 
-      { payload.results.aggregate.customStats && 
+      { validateHandler() && 
           <Fragment>
             <span className="print-pb mb-4">&nbsp;</span>
             <AddonSelector addon={addon} setAddonCallback={setAddon} />
