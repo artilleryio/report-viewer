@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 1.1.0
+- Adding Raw custom stats and counters
+- Added first addon handler, Metrics by Endpoint
+
 ## Version 1.0.3
 - Added formatting to numbers for readability (Easier to read larger numbers)
 - Added spacing to badges for readability (Periods hard to make out)
