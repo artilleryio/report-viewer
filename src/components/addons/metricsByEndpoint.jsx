@@ -91,6 +91,28 @@ export default ({ data }) => {
           </div>
         );
       })}
+      <h6 className="mt-3 mb-2">Response Times by Endpoint</h6>
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Endpoint</th>
+            <th scope="col" className="text-right">Min</th>
+            <th scope="col" className="text-right">Median</th>
+            <th scope="col" className="text-right">Max</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pivotCodesByEndpoint().map((item, i) => {
+            return (
+              <tr className="table-light">
+                <td>{item.endpoint}</td>
+                <td className="text-right">{formatNumber(item.latency.min)} ms</td>
+                <td className="text-right">{formatNumber(item.latency.median)} ms</td>
+                <td className="text-right">{formatNumber(item.latency.max)} ms</td>
+              </tr>)
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
