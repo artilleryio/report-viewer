@@ -1,0 +1,24 @@
+.print-pb {
+  height: 0px;
+  display: block;
+}
+
+@media print {
+  .container {
+    width: 100% !important;
+    margin: 0px !important;
+  }
+  .breadcrumb,
+  .navbar,
+  footer {
+    display: none;
+  }
+  body {
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+  .print-pb {
+    page-break-after: always;
+  }
+}
