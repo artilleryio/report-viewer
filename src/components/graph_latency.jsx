@@ -50,14 +50,14 @@ export default ({ data }) => {
     });
     datasets.push({
       label: "95th Percentile",
-      data: median,
+      data: p95s,
       fill: false,
       borderColor: colors.p95s,
       yAxisID: "y-axis-0"
     });
     datasets.push({
       label: "99th Percentile",
-      data: median,
+      data: p99s,
       fill: false,
       borderColor: colors.p99s,
       yAxisID: "y-axis-0"
