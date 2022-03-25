@@ -74,8 +74,3 @@ Quickly jump from section to section easily.
 Want to upload your report and share it with somebody else? You can do that using the remote loading functionality.
 
 ![Screenshot03](https://i.imgur.com/lybZ7ed.png)
-
-## OpenAPI
-Fully documented open api spec using swagger!
-
-![Screenshot03](https://i.imgur.com/XBRNkCR.png)
