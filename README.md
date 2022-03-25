@@ -21,7 +21,7 @@ Absolutely, check it out here: https://reportviewer.artillery.io/
 # Getting Started
 You can run this locally in three modes:
 
-Debug (next+react)
+Debug (react)
 ```
 $ npm install
 $ npm start
