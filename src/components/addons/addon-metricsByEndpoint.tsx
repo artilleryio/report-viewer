@@ -27,6 +27,9 @@ const AddonMetricsByEndpoint = () => {
         latency: Object.entries(aggregate.customStats)[si][1]
       });
     });
+
+    collection.sort((a, b) => (a.endpoint > b.endpoint) ? 1 : -1);
+
     return collection;
   };
 
