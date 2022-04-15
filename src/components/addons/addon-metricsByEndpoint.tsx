@@ -2,9 +2,12 @@ import React, { useContext, Fragment } from "react";
 import { ReportContext } from "../../contexts/report-context";
 import { formatNumber } from "../../utilities/formatters";
 
+
+
 const AddonMetricsByEndpoint = () => {
   const context = useContext(ReportContext);
   const { aggregate } = context.report.results;
+
   const pivotCodesByEndpoint = () => {
     let collection = [];
     Object.getOwnPropertyNames(aggregate.customStats).map((endpoint, si) => {
@@ -26,6 +29,13 @@ const AddonMetricsByEndpoint = () => {
     });
     return collection;
   };
+
+  const cleanMessageText = (message) => {
+    return message
+      .replace('plugins.metrics-by-endpoint.response_time.', '')
+      .replace('plugins.metrics-by-endpoint.', '');
+  };
+
   return !context.hasCustomMetrics ? 
     <div className="alert alert-danger">
       Unable to parse custom metrics for this addon handler.
@@ -40,7 +50,7 @@ const AddonMetricsByEndpoint = () => {
               return (
                 <div key={i} className="row mt-3">
                   <div className="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                    <h6><i className="fas fa-project-diagram"></i> $ {item.endpoint}</h6>
+                    <h6><i className="fas fa-project-diagram"></i> $ {cleanMessageText(item.endpoint)}</h6>
                     <ul className="list-group">
                       <li className="list-group-item d-flex justify-content-between align-items-center">
                         Shortest call
@@ -110,7 +120,7 @@ const AddonMetricsByEndpoint = () => {
                 {pivotCodesByEndpoint().map((item, i) => {
                   return (
                     <tr key={i}>
-                      <td>{item.endpoint}</td>
+                      <td>{cleanMessageText(item.endpoint)}</td>
                       <td className="text-right">{formatNumber(item.latency.min)} ms</td>
                       <td className="text-right">{formatNumber(item.latency.median)} ms</td>
                       <td className="text-right">{formatNumber(item.latency.max)} ms</td>
