@@ -22,7 +22,7 @@ const Footer = () => {
         <br />
         <small className="text-muted version">Built by Chris Fryer - <i className="fab fa-twitter"></i> <a href="https://twitter.com/cfryerdev" target="_blank">@cfryerdev</a></small>
         <br />
-        <small className="text-muted version">Version: {packageJson.version} - <a href="/api-docs" target="_blank">OpenAPI</a></small>
+        <small className="text-muted version">Version: {packageJson.version}</small>
       </footer>
   );
 };

@@ -13,10 +13,11 @@ const AddonMetricsByEndpoint = () => {
     Object.getOwnPropertyNames(aggregate.customStats).map((endpoint, si) => {
       let codes = [];
       Object.getOwnPropertyNames(aggregate.counters).forEach((item, i) => {
-        let segm = item.split(' ');
+        let segm = cleanMessageText(item).split('.');
+        console.log('segm', segm);
         if (endpoint === segm[segm.length - 1]) {
           codes.push({ 
-            code: parseInt(item.replace('code ', '').replace(` on ${endpoint}`, ''), 0),
+            code: parseInt(item.replace('code.', '').replace(` on ${endpoint}`, ''), 0),
             count: Object.values(aggregate.counters)[i]
           });
         }
@@ -71,7 +72,9 @@ const AddonMetricsByEndpoint = () => {
           </div>
         </div>
 
-        <div className="card mb-4">
+        <br />
+
+        <div className="card mt-2 mb-4">
           <div className="card-header card-header-rose">
               <i className="fas fa-puzzle-piece"></i> Metrics by Endpoint
           </div>
