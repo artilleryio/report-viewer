@@ -14,10 +14,9 @@ const AddonMetricsByEndpoint = () => {
       let codes = [];
       Object.getOwnPropertyNames(aggregate.counters).forEach((item, i) => {
         let segm = cleanMessageText(item).split('.');
-        console.log('segm', segm);
-        if (endpoint === segm[segm.length - 1]) {
+        if (cleanMessageText(endpoint) === segm[0]) {
           codes.push({ 
-            code: parseInt(item.replace('code.', '').replace(` on ${endpoint}`, ''), 0),
+            code: parseInt(segm[2], 0),
             count: Object.values(aggregate.counters)[i]
           });
         }
