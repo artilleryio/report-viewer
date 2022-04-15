@@ -41,6 +41,36 @@ const AddonMetricsByEndpoint = () => {
       Unable to parse custom metrics for this addon handler.
     </div> : (
       <Fragment>
+
+        <div className="card mb-4">
+          <div className="card-header card-header-rose">
+            <i className="fas fa-table"></i> Response Times by Endpoint
+          </div>
+          <div className="card-body">
+            <table className="table">
+              <thead className="text-rose">
+                <tr>
+                  <th scope="col">Endpoint</th>
+                  <th scope="col" className="text-right">Min</th>
+                  <th scope="col" className="text-right">Median</th>
+                  <th scope="col" className="text-right">Max</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pivotCodesByEndpoint().map((item, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{cleanMessageText(item.endpoint)}</td>
+                      <td className="text-right">{formatNumber(item.latency.min)} ms</td>
+                      <td className="text-right">{formatNumber(item.latency.median)} ms</td>
+                      <td className="text-right">{formatNumber(item.latency.max)} ms</td>
+                    </tr>)
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div className="card mb-4">
           <div className="card-header card-header-rose">
               <i className="fas fa-puzzle-piece"></i> Metrics by Endpoint
@@ -102,34 +132,7 @@ const AddonMetricsByEndpoint = () => {
           </div>
         </div>
 
-        <div className="card mb-4">
-          <div className="card-header card-header-rose">
-            <i className="fas fa-table"></i> Response Times by Endpoint
-          </div>
-          <div className="card-body">
-            <table className="table">
-              <thead className="text-rose">
-                <tr>
-                  <th scope="col">Endpoint</th>
-                  <th scope="col" className="text-right">Min</th>
-                  <th scope="col" className="text-right">Median</th>
-                  <th scope="col" className="text-right">Max</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pivotCodesByEndpoint().map((item, i) => {
-                  return (
-                    <tr key={i}>
-                      <td>{cleanMessageText(item.endpoint)}</td>
-                      <td className="text-right">{formatNumber(item.latency.min)} ms</td>
-                      <td className="text-right">{formatNumber(item.latency.median)} ms</td>
-                      <td className="text-right">{formatNumber(item.latency.max)} ms</td>
-                    </tr>)
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        
       </Fragment>
   );
 };
