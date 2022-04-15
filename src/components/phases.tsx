@@ -19,7 +19,7 @@ const Phases = () => {
                     <th scope="col">Name</th>
                     <th scope="col" className="text-right">Duration</th>
                     <th scope="col" className="text-right">Arrival Rate</th>
-                    <th scope="col" className="text-right">Ramp To</th>
+                    {/* <th scope="col" className="text-right">Ramp To</th> */}
                     <th scope="col" className="text-right">Max V Users</th>
                   </tr>
                 </thead>
@@ -30,7 +30,7 @@ const Phases = () => {
                         <td>{item.name || '--'}</td>
                         <td className="text-right font-weight-extra-bold">{item.duration || '--'}</td>
                         <td className="text-right font-weight-extra-bold">{item.arrivalRate || '--'}</td>
-                        <td className="text-right font-weight-extra-bold">{item.rampTo || '--'}</td>
+                        {/* <td className="text-right font-weight-extra-bold">{item.rampTo || '--'}</td> */}
                         <td className="text-right font-weight-extra-bold">{item.maxVusers || '--'}</td>
                       </tr>)
                   })}
