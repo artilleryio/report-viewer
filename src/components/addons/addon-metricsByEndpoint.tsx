@@ -89,14 +89,14 @@ const AddonMetricsByEndpoint = () => {
           <ShowMoreButton />
         </div>
 
-        {/* <br />
+        <br />
 
         <div className="card mt-2 mb-4">
           <div className="card-header card-header-rose">
               <i className="fas fa-puzzle-piece"></i> Metrics by Endpoint
           </div>
           <div className="card-body">
-            {pivotCodesByEndpoint().map((item, i) => {
+            {results.map((item, i) => {
               return (
                 <div key={i} className="row mt-3">
                   <div className="col-md-6 col-lg-6 col-sm-12 col-xs-12">
@@ -150,7 +150,8 @@ const AddonMetricsByEndpoint = () => {
               );
             })}
           </div>
-        </div> */}
+          <ShowMoreButton />
+        </div>
 
         
       </Fragment>
