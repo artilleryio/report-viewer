@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, useState, Fragment, useEffect } from "react";
 import { ReportContext } from "../../contexts/report-context";
 import { formatNumber } from "../../utilities/formatters";
 
@@ -7,12 +7,19 @@ import { formatNumber } from "../../utilities/formatters";
 const AddonMetricsByEndpoint = () => {
   const context = useContext(ReportContext);
   const { aggregate } = context.report.results;
+  const [rowShowCount, setRowShowCount] = useState(25);
+  const [count, setCount] = useState(0);
+  const [results, setResults] = useState([]);
+  
+  const handleShowMoreRows = () => {
+    setRowShowCount(rowShowCount + 25);
+  };
 
-  const pivotCodesByEndpoint = () => {
+  const getPagedResults = () => {
     let collection = [];
-    Object.getOwnPropertyNames(aggregate.customStats).map((endpoint, si) => {
+    Object.getOwnPropertyNames(aggregate.customStats).slice(0, rowShowCount).map((endpoint, si) => {
       let codes = [];
-      Object.getOwnPropertyNames(aggregate.counters).forEach((item, i) => {
+      Object.getOwnPropertyNames(aggregate.counters).slice(0, rowShowCount).forEach((item, i) => {
         let segm = cleanMessageText(item).split('.');
         if (cleanMessageText(endpoint) === segm[0]) {
           codes.push({ 
@@ -29,15 +36,21 @@ const AddonMetricsByEndpoint = () => {
     });
 
     collection.sort((a, b) => (a.endpoint > b.endpoint) ? 1 : -1);
-
-    return collection;
+    setCount(collection.length);
+    setResults(collection);
   };
+
+  useEffect(() => {
+    getPagedResults();
+  }, [aggregate, rowShowCount])
 
   const cleanMessageText = (message) => {
     return message
       .replace('plugins.metrics-by-endpoint.response_time.', '')
       .replace('plugins.metrics-by-endpoint.', '');
   };
+
+  const ShowMoreButton = () => (<button className="btn btn-info m-2" onClick={handleShowMoreRows}>Show More...</button>);
 
   return !context.hasCustomMetrics ? 
     <div className="alert alert-danger">
@@ -60,7 +73,7 @@ const AddonMetricsByEndpoint = () => {
                 </tr>
               </thead>
               <tbody>
-                {pivotCodesByEndpoint().map((item, i) => {
+                {results.map((item, i) => {
                   return (
                     <tr key={i}>
                       <td>{cleanMessageText(item.endpoint)}</td>
@@ -72,9 +85,11 @@ const AddonMetricsByEndpoint = () => {
               </tbody>
             </table>
           </div>
+
+          <ShowMoreButton />
         </div>
 
-        <br />
+        {/* <br />
 
         <div className="card mt-2 mb-4">
           <div className="card-header card-header-rose">
@@ -135,7 +150,7 @@ const AddonMetricsByEndpoint = () => {
               );
             })}
           </div>
-        </div>
+        </div> */}
 
         
       </Fragment>

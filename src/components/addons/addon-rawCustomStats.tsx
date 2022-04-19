@@ -1,10 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ReportContext } from "../../contexts/report-context";
 import { formatNumber } from "../../utilities/formatters";
 
 const AddonRawCustomStats = () => {
   const context = useContext(ReportContext);
   const { aggregate } = context.report.results;
+  const [rowShowCount, setRowShowCount] = useState(25);
+  const [results, setResults] = useState({ customStats: [], counters: [] });
+
+  useEffect(() => {
+    getPagedResults();
+  }, [aggregate]);
+
+  const getPagedResults = () =>{
+    setResults({
+        customStats: Object.getOwnPropertyNames(aggregate.customStats).slice(0, rowShowCount),
+        counters: Object.getOwnPropertyNames(aggregate.counters).slice(0, rowShowCount)
+    });
+  };
+
+  const handleShowMoreRows = () => {
+    setRowShowCount(rowShowCount + 25);
+    getPagedResults();
+  };
+
+  const ShowMoreButton = () => (<button className="btn btn-info m-2" onClick={handleShowMoreRows}>Show More...</button>);
+
   return !context.hasCustomMetrics ? 
     <div className="alert alert-danger">
       Unable to parse custom metrics for this addon handler.
@@ -21,7 +42,7 @@ const AddonRawCustomStats = () => {
                         <i className="fas fa-puzzle-piece"></i> Raw Custom Stats
                     </h5>
                     <div className="list-group">
-                        {Object.getOwnPropertyNames(aggregate.customStats).map((item, i) => {
+                        {results.customStats.map((item, i) => {
                             return (
                                 <div key={i} className="list-group-item list-group-item-action flex-column align-items-start">
                                     <p className="mb-1">{item}</p>
@@ -36,7 +57,7 @@ const AddonRawCustomStats = () => {
                         <i className="fas fa-puzzle-piece"></i> Raw Counters
                     </h5>
                     <ul className="list-group">
-                        {Object.getOwnPropertyNames(aggregate.counters).map((item, i) => {
+                        {results.counters.map((item, i) => {
                             return (
                                 <li
                                     key={i}
@@ -53,6 +74,8 @@ const AddonRawCustomStats = () => {
                 </div>
             </div>
         </div>
+
+        <ShowMoreButton />
     </div>
 
     
