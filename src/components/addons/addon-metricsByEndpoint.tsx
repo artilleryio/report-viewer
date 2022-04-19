@@ -86,7 +86,7 @@ const AddonMetricsByEndpoint = () => {
             </table>
           </div>
 
-          <ShowMoreButton />
+          { count > rowShowCount && <ShowMoreButton /> }
         </div>
 
         <br />
