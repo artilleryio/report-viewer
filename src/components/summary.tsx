@@ -34,10 +34,26 @@ const Summary = () => {
         });
         return count;
     };
+    const getNetworkErrorCount = () => {
+        let count = 0;
+        Object.getOwnPropertyNames(aggregate.errors).map((item, i) => {
+            count += parseInt(aggregate.errors[item], 0);
+        });
+        return count;
+    };
+    const getHttpCodeCount = () => {
+        let count = 0;
+        Object.getOwnPropertyNames(aggregate.codes).map((item, i) => {
+            count += parseInt(aggregate.codes[item], 0);
+        });
+        return count;
+    };
     const getSuccessPercent = (): number => {
         if (aggregate.requestsCompleted === undefined) { return 0; }
-        const totalErrors = getBadRequestCount() + getServerErrorCount();
-        const totalRequests = parseInt(aggregate.requestsCompleted.toString());
+        const totalErrors = getBadRequestCount() + getServerErrorCount() + getNetworkErrorCount();
+        const totalRequests = getHttpCodeCount() + getNetworkErrorCount();
+        console.log('totalRequests', totalRequests);
+        console.log('totalErrors', totalErrors);
         return  ((totalRequests - totalErrors) / totalRequests) * 100;
     };
     const calculateHealthRating = () => {
@@ -144,7 +160,7 @@ const Summary = () => {
                                 <i className="fas fa-hashtag"></i>
                             </div>
                             <p className="card-category">Requests</p>
-                            <h3 className="card-title">{isLoaded && formatNumber(aggregate.requestsCompleted)}</h3>
+                            <h3 className="card-title">{isLoaded && formatNumber(getHttpCodeCount() + getNetworkErrorCount())}</h3>
                         </div>
                         <div className="card-footer">
                             <div className="stats">
