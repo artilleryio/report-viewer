@@ -1,1 +1,21 @@
-node_modules
+# dependencies
+/node_modules
+
+# build
+/dist
+/build
+
+# misc
+.DS_Store
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# next.js / node
+/.next
+.env
+.env.local
+.env.dev
+.env.production

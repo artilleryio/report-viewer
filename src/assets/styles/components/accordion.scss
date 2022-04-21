@@ -1,0 +1,36 @@
+.accordion {
+    border: 1px solid #eee;
+    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1);
+  }
+
+.accordion.noborder {
+  border: 0px;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.accordion-header {
+  background: #fff;
+  color: #000;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.accordion-header .accordion-chev {
+  color: #4db39d;
+}
+
+.accordion-container {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 0px 20px;
+  display: none;
+}
+
+.accordion-container.open {
+  display: block;
+}
